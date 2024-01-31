@@ -19,7 +19,12 @@ pipeline:
           org: default
           pipeline: helloworldtest
           project: TestProject
-          inputs: {}
+          inputs:
+            identifier: helloworldtest
+            variables:
+              - name: TestUser
+                type: String
+                value: <+input>
           outputs: []
     - stage:
         identifier: build
