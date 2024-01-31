@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_satzisa_java_hello_world_with_maven_1706728281702-push-trigger-input-set
+  identifier: Build_satzisa_java_hello_world_with_maven_1706728281702pushtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: TestProject
+  pipeline:
+    identifier: Build_satzisa_java_hello_world_with_maven_1706728281702
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
