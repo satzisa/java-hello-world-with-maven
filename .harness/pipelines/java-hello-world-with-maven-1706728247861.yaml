@@ -11,6 +11,17 @@ pipeline:
         repoName: satzisa/java-hello-world-with-maven
   stages:
     - stage:
+        name: SubProject
+        identifier: SubProject
+        description: ""
+        type: Pipeline
+        spec:
+          org: default
+          pipeline: helloworldtest
+          project: TestProject
+          inputs: {}
+          outputs: []
+    - stage:
         identifier: build
         name: build
         spec:
