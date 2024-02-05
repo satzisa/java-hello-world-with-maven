@@ -43,6 +43,21 @@ pipeline:
                       echo <+pipeline.properties.ci.codebase.build.spec.number>
                   timeout: ""
                   type: Run
+              - step:
+                  type: RunTests
+                  name: RunTests_1
+                  identifier: RunTests_1
+                  spec:
+                    language: Java
+                    buildTool: Maven
+                    args: clean test
+                    runOnlySelectedTests: true
+                    reports:
+                      type: JUnit
+                      spec:
+                        paths:
+                          - ./**.xml
+                    enableTestSplitting: false
           platform:
             os: Linux
             arch: Amd64
