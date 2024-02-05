@@ -50,3 +50,56 @@ pipeline:
             type: Cloud
             spec: {}
         type: CI
+    - stage:
+        name: DevDeploy
+        identifier: DevDeploy
+        description: ""
+        type: Deployment
+        spec:
+          deploymentType: Ssh
+          service:
+            serviceRef: dev1
+          environment:
+            environmentRef: dev
+            deployToAll: false
+            infrastructureDefinitions:
+              - identifier: dev1
+          execution:
+            steps:
+              - step:
+                  name: Deploy
+                  identifier: Deploy
+                  template:
+                    templateRef: account.Default_Install_War_Bash
+                    versionLabel: v1
+                    templateInputs:
+                      type: Command
+                      spec:
+                        environmentVariables:
+                          - name: DestinationDirectory
+                            type: String
+                            value: $HOME/<+service.name>/<+env.name>
+            rollbackSteps:
+              - step:
+                  name: Rollback
+                  identifier: Rollback
+                  timeout: 10m
+                  strategy:
+                    repeat:
+                      items: <+stage.output.hosts>
+                  template:
+                    templateRef: account.Default_Install_War_Bash
+                    templateInputs:
+                      type: Command
+                      spec:
+                        environmentVariables:
+                          - name: DestinationDirectory
+                            type: String
+                            value: $HOME/<+service.name>/<+env.name>
+        tags: {}
+        failureStrategies:
+          - onFailure:
+              errors:
+                - AllErrors
+              action:
+                type: StageRollback
