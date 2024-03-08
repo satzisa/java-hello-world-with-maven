@@ -33,7 +33,7 @@ pipeline:
                   identifier: Maven_Build
                   spec:
                     shell: Sh
-                    command: mvn clean install
+                    command: mvn clean install -gs settings.xml
               - step:
                   type: RunTests
                   name: RunTests_1
