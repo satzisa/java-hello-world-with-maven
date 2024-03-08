@@ -11,22 +11,6 @@ pipeline:
         repoName: satzisa/java-hello-world-with-maven
   stages:
     - stage:
-        name: SubProject
-        identifier: SubProject
-        description: ""
-        type: Pipeline
-        spec:
-          org: default
-          pipeline: helloworldtest
-          project: TestProject
-          inputs:
-            identifier: helloworldtest
-            variables:
-              - name: TestUser
-                type: String
-                value: <+input>
-          outputs: []
-    - stage:
         identifier: build
         name: build
         spec:
@@ -43,6 +27,13 @@ pipeline:
                       echo <+pipeline.properties.ci.codebase.build.spec.number>
                   timeout: ""
                   type: Run
+              - step:
+                  type: Run
+                  name: Maven_Build
+                  identifier: Maven_Build
+                  spec:
+                    shell: Sh
+                    command: mvn clean install
               - step:
                   type: RunTests
                   name: RunTests_1
