@@ -61,7 +61,7 @@
       <url>artifactregistry://us-central1-maven.pkg.dev/profound-portal-416620/maven-snapshot</url>
     </snapshotRepository>
     <repository>
-      <id>artifact-registry/id>
+      <id>artifact-registry</id>
       <url>artifactregistry://us-central1-maven.pkg.dev/profound-portal-416620/maven-release</url>
     </repository>
   </distributionManagement>
