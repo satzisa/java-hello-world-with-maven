@@ -68,7 +68,7 @@
 
   <repositories>
     <repository>
-      <id>central/id>
+      <id>central</id>
       <url>artifactregistry://us-central1-maven.pkg.dev/profound-portal-416620/maven-remote</url>
       <releases>
         <enabled>true</enabled>
